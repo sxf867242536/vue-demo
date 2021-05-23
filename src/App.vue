@@ -1,7 +1,9 @@
 <template>
   <div>
     <tabbar></tabbar>
-    <router-view></router-view>
+    <section>
+      <router-view></router-view>
+    </section>
   </div>
 </template>
 
@@ -38,5 +40,12 @@ export default {
 }
 li {
   list-style: none;
+}
+html,
+body {
+  height: 100%;
+}
+section {
+  margin-bottom: 50px;
 }
 </style>

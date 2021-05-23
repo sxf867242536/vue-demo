@@ -4,11 +4,11 @@
       <li
         v-for="data in datalist"
         :key="data.filmId"
-        @click="handleClick(data.id)"
+        @click="handleClick(data.filmId)"
       >
         <img :src="data.poster" alt="" />
         {{ data.name }}
-        <p>主演+导演：{{ data.actors | actorFilter }}</p>
+        <p>主演：{{ data.actors | actorFilter }}</p>
         <p>{{ data.nation }} | {{ data.runtime }}分钟</p>
       </li>
     </ul>
