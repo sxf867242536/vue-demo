@@ -16,7 +16,7 @@
 </template>
 
 <script>
-import axios from 'axios'
+import http from '@/util/http'
 import Vue from 'vue'
 Vue.filter('actorFilter', actors => {
   if (actors) {
@@ -41,12 +41,9 @@ export default {
     }
   },
   mounted () {
-    axios({
-      url:
-        'https://m.maizuo.com/gateway?cityId=310100&pageNum=1&pageSize=10&type=1&k=2499752',
+    http({
+      url: '/gateway?cityId=310100&pageNum=1&pageSize=10&type=1&k=2499752',
       headers: {
-        'X-Client-Info':
-          '{"a":"3000","ch":"1002","v":"5.0.4","e":"1621520980801290573578241","bc":"310100"}',
         'X-Host': 'mall.film-ticket.film.list'
       }
     }).then(res => {
