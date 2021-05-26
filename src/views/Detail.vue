@@ -1,5 +1,6 @@
 <template>
   <div v-if="filminfo">
+    <detail-header v-top :title="filminfo.name"></detail-header>
     <div
       :style="{ backgroundImage: 'url(' + filminfo.poster + ')' }"
       style="height:200px;background-size:cover;background-position:center"
@@ -51,11 +52,29 @@ import http from '@/util/http'
 import Vue from 'vue'
 import moment from 'moment'
 import detailSwiper from '@/views/detail/DetailSwiper.vue'
+import detailHeader from '@/views/detail/DetailHeader.vue'
 Vue.filter('dataFilter', date => {
   return moment(date * 1000).format('YYYY-MM-DD')
 })
+Vue.directive('top', {
+  inserted (el) {
+    el.style.display = 'none'
+    window.onscroll = () => {
+      if (
+        (document.body.scrollTop || document.documentElement.scrollTop) > 10
+      ) {
+        el.style.display = 'block'
+      } else {
+        el.style.display = 'none'
+      }
+    }
+  },
+  unbind () {
+    window.onscroll = null
+  }
+})
 export default {
-  components: { detailSwiper },
+  components: { detailSwiper, detailHeader },
   mounted () {
     http({
       url: `/gateway?filmId=${this.$route.params.myid}&k=3316774`,
@@ -64,7 +83,6 @@ export default {
       }
     }).then(res => {
       this.filminfo = res.data.data.film
-      console.log(this.filminfo)
     })
   },
   data () {

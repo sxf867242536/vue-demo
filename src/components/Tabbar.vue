@@ -28,6 +28,7 @@ nav {
   line-height: 25px;
   text-align: center;
   background-color: white;
+  z-index: 99;
   ul {
     display: flex;
     li {
