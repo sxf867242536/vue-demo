@@ -8,7 +8,9 @@
         ></div>
       </div>
     </film-swiper>
-    <film-header></film-header>
+    <film-header
+      style="position:sticky;top:0px;background:white;z-index:100;"
+    ></film-header>
     <router-view></router-view>
   </div>
 </template>

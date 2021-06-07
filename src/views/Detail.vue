@@ -3,7 +3,7 @@
     <detail-header v-top :title="filminfo.name"></detail-header>
     <div
       :style="{ backgroundImage: 'url(' + filminfo.poster + ')' }"
-      style="height:200px;background-size:cover;background-position:center"
+      style="height:150px;background-size:cover;background-position:center"
     ></div>
     <h3>{{ filminfo.name }}-{{ filminfo.filmType.name }}</h3>
     <div>{{ filminfo.category }}</div>
@@ -40,7 +40,8 @@
       >
         <div
           :style="{ backgroundImage: 'url(' + photo + ')' }"
-          style="height:100px;background-size: cover;"
+          style="height:100px;background-size: cover;backgrounde-position:center;"
+          @click="handlePreview(index)"
         ></div>
       </div>
     </detail-swiper>
@@ -53,6 +54,7 @@ import Vue from 'vue'
 import moment from 'moment'
 import detailSwiper from '@/views/detail/DetailSwiper.vue'
 import detailHeader from '@/views/detail/DetailHeader.vue'
+import { ImagePreview } from 'vant'
 Vue.filter('dataFilter', date => {
   return moment(date * 1000).format('YYYY-MM-DD')
 })
@@ -90,13 +92,24 @@ export default {
       filminfo: null,
       isShow: false
     }
+  },
+  methods: {
+    handlePreview (index) {
+      ImagePreview({
+        images: this.filminfo.photos,
+        startPosition: index,
+        loop: false,
+        closeable: true,
+        closeIconPosition: 'top-left'
+      })
+    }
   }
 }
 </script>
 
 <style lang="scss" scoped>
 .synopis {
-  height: 50px;
+  height: 30px;
   overflow: hidden;
 }
 </style>
