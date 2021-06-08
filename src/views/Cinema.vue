@@ -1,17 +1,29 @@
 <template>
-  <div class="cinema" :style="{ height: height }">
-    <ul>
-      <li v-for="cinema in cinemaList" :key="cinema.cinemaId">
-        <div>{{ cinema.name }}</div>
-        <div class="address">{{ cinema.address }}</div>
-      </li>
-    </ul>
+  <div>
+    <van-nav-bar title="标题" @click-left="handleLeft">
+      <template #left> <van-icon name="arrow-down" />上海 </template>
+      <template #right>
+        <van-icon name="search" size="18" color="black" />
+      </template>
+    </van-nav-bar>
+    <div class="cinema" :style="{ height: height }">
+      <ul>
+        <li v-for="cinema in cinemaList" :key="cinema.cinemaId">
+          <div>{{ cinema.name }}</div>
+          <div class="address">{{ cinema.address }}</div>
+        </li>
+      </ul>
+    </div>
   </div>
 </template>
 
 <script>
 import http from '@/util/http'
 import BetterScroll from 'better-scroll'
+import Vue from 'vue'
+import { NavBar, Icon } from 'vant'
+
+Vue.use(NavBar).use(Icon)
 export default {
   data () {
     return {
@@ -20,7 +32,7 @@ export default {
     }
   },
   mounted () {
-    this.height = document.documentElement.clientHeight - 50 + 'px'
+    this.height = document.documentElement.clientHeight - 100 + 'px'
     http({
       url: '/gateway?cityId=110100&ticketFlag=1&k=7115329',
       headers: {
@@ -36,6 +48,11 @@ export default {
         })
       })
     })
+  },
+  methods: {
+    handleLeft () {
+      this.$router.push('/city')
+    }
   }
 }
 </script>

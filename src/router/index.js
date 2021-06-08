@@ -6,6 +6,7 @@ import Center from './../views/Center.vue'
 import Nowplaying from './../views/film/Nowplaying.vue'
 import Comingsoon from './../views/film/Comingsoon.vue'
 import Detail from './../views/Detail.vue'
+import City from './../views/City.vue'
 
 Vue.use(VueRouter)
 
@@ -31,6 +32,10 @@ const routes = [
   {
     path: '/cinema',
     component: Cinema
+  },
+  {
+    path: '/city',
+    component: City
   },
   {
     path: '/center',
